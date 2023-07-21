@@ -1,10 +1,12 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 const gallery = document.querySelector('.gallery');
+
 const galleryImage = createElementOfGallery(galleryItems);
+
 gallery.insertAdjacentHTML('afterbegin', galleryImage);
+
 gallery.addEventListener('click', onImageClick);
-// gallery.removeEventListener('keydown', onEscKeypress);
 
 
 function createElementOfGallery(items) {
@@ -31,20 +33,15 @@ function onImageClick(event) {
   } else {
     const instans = basicLightbox.create(`
      <img src=${event.target.dataset.source} >`);
-     instans.show();
-  };
- 
-};
-
-gallery.addEventListener('keydown', onEscKeypress);
-
-function onEscKeypress(event) {
- 
-  if (event.code === 'Escape') {
-    const instans = basicLightbox.create(`
-     <img src=${event.target.dataset.source} >`);
+    instans.show();
+    
+    gallery.addEventListener('keydown', (event) => {
+      if (event.code === 'Escape') {
      instans.close();
- 
   };
-
+      
+    });
+  };
+ 
 };
+
